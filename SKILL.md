@@ -1,11 +1,11 @@
 ---
 name: genrock-aiblock
-description: Merancang, membangun, dan mengaudit UI web atau aplikasi dengan identitas Genrock Industrial, IBM Plex Sans, permukaan solid, border presisi, dan copy langsung. Gunakan untuk pembuatan app, dashboard, form, landing page, komponen UI, redesign, design system, atau audit anti-AI-slop. Menjaga ciri khas lintas produk tanpa memaksakan template layout yang sama.
+description: Merancang, membangun, dan mengaudit UI web atau aplikasi dengan identitas Genrock Industrial, IBM Plex Sans, permukaan solid, border presisi, dan copy langsung. Gunakan untuk pembuatan app, dashboard, form, landing page, komponen UI, redesign, design system, atau audit kualitas desain. Menjaga ciri khas lintas produk tanpa memaksakan template layout yang sama.
 ---
 
 # Genrock AIBLOCK
 
-Sistem desain Genrock Industrial dan pemeriksaan anti-slop. Hasil harus terasa sebagai alat yang dibuat dengan sengaja: jelas, tegas, berguna, dan konsisten. Bukan sekadar UI generik dengan warna hijau.
+Sistem desain Genrock Industrial dan pemeriksaan Design Integrity. Hasil harus terasa sebagai alat yang dibuat dengan sengaja: jelas, tegas, berguna, dan konsisten. Bukan sekadar UI generik dengan warna hijau.
 
 ## Kontrak identitas
 
@@ -31,7 +31,7 @@ Skill ini mandiri. Skill `typography` boleh dipakai untuk audit tambahan jika te
 
 Baca sebelum pekerjaan:
 1. [Fondasi visual](reference/foundation.md) untuk setiap build atau redesign UI.
-2. [Aturan anti-slop](reference/anti-slop.md) untuk build dan audit.
+2. [Design Integrity](reference/design-integrity.md) untuk build dan audit.
 
 Baca sesuai kebutuhan:
 - [Pola UI](reference/ui-patterns.md): layout, form, tabel, navigasi, states, native.

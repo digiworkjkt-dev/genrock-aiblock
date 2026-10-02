@@ -1,11 +1,11 @@
 ---
 name: genrock-aiblock
-description: Merancang, membangun, dan mengaudit UI web atau aplikasi dengan identitas Genrock Industrial, IBM Plex Sans, permukaan solid, border presisi, dan copy langsung. Gunakan untuk pembuatan app, dashboard, form, landing page, komponen UI, redesign, design system, atau audit anti-AI-slop. Menjaga ciri khas lintas produk tanpa memaksakan template layout yang sama.
+description: Merancang, membangun, dan mengaudit UI web atau aplikasi dengan identitas Genrock Industrial, IBM Plex Sans, permukaan solid, border presisi, dan copy langsung. Gunakan untuk pembuatan app, dashboard, form, landing page, komponen UI, redesign, design system, atau audit kualitas desain. Menjaga ciri khas lintas produk tanpa memaksakan template layout yang sama.
 ---
 
 # Genrock AIBLOCK
 
-Sistem desain Genrock Industrial dan pemeriksaan anti-slop. Hasil harus terasa sebagai alat yang dibuat dengan sengaja: jelas, tegas, berguna, dan konsisten. Bukan sekadar UI generik dengan warna hijau.
+Sistem desain Genrock Industrial dan pemeriksaan Design Integrity. Hasil harus terasa sebagai alat yang dibuat dengan sengaja: jelas, tegas, berguna, dan konsisten. Bukan sekadar UI generik dengan warna hijau.
 
 ## Kontrak identitas
 
@@ -31,7 +31,7 @@ Skill ini mandiri. Skill `typography` boleh dipakai untuk audit tambahan jika te
 
 Baca sebelum pekerjaan:
 1. [Fondasi visual](#modul-fondasi-visual) untuk setiap build atau redesign UI.
-2. [Aturan anti-slop](#modul-anti-slop) untuk build dan audit.
+2. [Design Integrity](#modul-design-integrity) untuk build dan audit.
 
 Baca sesuai kebutuhan:
 - [Pola UI](#modul-pola-ui): layout, form, tabel, navigasi, states, native.
@@ -195,9 +195,9 @@ Jangan membalik warna mentah atau menggunakan accent light dengan teks putih unt
 Pertahankan DNA, tetapi ikuti konvensi iOS/Android, font scaling, safe area, dan target sentuh platform. Gunakan token numerik untuk React Native, bukan CSS rem/clamp. Muat Plex melalui mekanisme native existing. Jangan memaksakan desktop navbar atau tabel lebar ke layar ponsel.
 
 
-## Modul Anti-Slop
+## Modul Design Integrity
 
-### Aturan Anti-Slop Genrock
+### Design Integrity Genrock
 
 Aturan ini bukan detector “dibuat AI”. Nilai kualitas dan alasan desain, bukan tebakan asalnya.
 

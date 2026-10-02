@@ -1,4 +1,4 @@
-# Aturan Anti-Slop Genrock
+# Design Integrity Genrock
 
 Aturan ini bukan detector “dibuat AI”. Nilai kualitas dan alasan desain, bukan tebakan asalnya.
 

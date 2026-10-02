@@ -6,7 +6,7 @@ Reusable UI design skill with a consistent **Genrock Industrial** identity: IBM 
 
 - [SKILL.md](SKILL.md): workflow, modes, identity contract, and module routing.
 - [Visual foundation](reference/foundation.md): typography, colors, density, spacing, shapes, theme, and native guidance.
-- [Anti-slop rules](reference/anti-slop.md): honesty, functionality, purposeful visual techniques, and consistency.
+- [Design Integrity](reference/design-integrity.md): honesty, functionality, purposeful visual techniques, and consistency.
 - [UI patterns](reference/ui-patterns.md): forms, tables, navigation, interaction states, and accessibility.
 - [Delivery gate](reference/delivery-gate.md): evidence-based PASS / FAIL / NOT TESTED / N/A checks.
 - [DESIGN.md template](templates/DESIGN.md): product-specific design direction.
@@ -44,4 +44,4 @@ Version 1.0. This is a design skill, not a runnable app or a guarantee of WCAG c
 
 ## Inspiration
 
-The discussion of purpose-based filtering and direction/verification separation was inspired by [anti-slop](https://github.com/miqdadbadjuber/anti-slop). Genrock rules are independently written for the Industrial direction; this repository is not affiliated with that project or Replit’s design system.
+The discussion of purpose-based filtering and direction/verification separation was inspired by [initial reference](https://github.com/miqdadbadjuber/anti-slop). Genrock rules are independently written for the Industrial direction; this repository is not affiliated with that project or Replit’s design system.
