@@ -36,6 +36,8 @@ Baca sebelum pekerjaan:
 Baca sesuai kebutuhan:
 - [Pola UI](#modul-pola-ui): layout, form, tabel, navigasi, states, native.
 - [Delivery gate](#modul-delivery-gate): sebelum menyatakan pekerjaan selesai.
+- [Laporan audit HTML](#modul-laporan-audit-html): wajib untuk audit dan audit ulang.
+- [Template HTML audit](#template-html-audit): starter laporan, bukan hasil audit.
 - [Template arah produk](#template-design): untuk mencatat identitas dan keputusan per proyek.
 - [Token CSS](#token-css): starter web, bukan stylesheet yang harus disalin mentah.
 
@@ -44,7 +46,7 @@ Baca sesuai kebutuhan:
 Pilih dari permintaan, tidak perlu menanyakan mode pada setiap sesi:
 - **Build:** app/UI baru. Tetapkan arah, implementasikan, lalu verifikasi.
 - **Adapt:** perubahan pada UI existing. Pertahankan struktur dan integrasi, ubah hanya yang diperlukan.
-- **Audit:** permintaan review atau audit. Baca dan laporkan temuan; jangan mengubah kode kecuali pengguna meminta perbaikan.
+- **Audit:** permintaan review atau audit. Baca dan laporkan temuan dalam file HTML sebagai output akhir; jangan mengubah kode kecuali pengguna meminta perbaikan. Ringkasan chat tidak menggantikan file.
 - **Explore:** pilihan visual. Buat mockup yang jelas dilabeli konsep, dengan data contoh yang transparan. Jangan mengklaim sebagai aplikasi berfungsi.
 
 Jika niat benar-benar ambigu, ajukan satu pertanyaan terarah dengan rekomendasi.
@@ -103,7 +105,9 @@ Sebuah hasil baik harus:
 
 Simpan detail audit panjang di file bila diperlukan; jangan membanjiri chat dengan puluhan PASS identik.
 
-> Versi single-file: seluruh modul tercantum di bawah. Baca bagian sesuai routing; tidak perlu file skill Typography terpisah. Untuk dipakai di percakapan lain, tambahkan melalui workspace Knowledge → Skills.
+Untuk mode Audit, wajib buat dan lampirkan file `.html` sesuai modul laporan audit, termasuk ketika tidak ada temuan. Audit ulang setelah perbaikan menghasilkan laporan HTML baru dengan status temuan yang diperbarui. Jangan mengaku selesai sebelum file benar-benar dibuat dan dapat diakses pengguna.
+
+> Versi single-file: seluruh modul dan template tercantum di bawah. Baca sesuai routing. File HTML audit adalah deliverable wajib untuk mode Audit; template bukan hasil audit.
 
 
 ## Modul Fondasi Visual
@@ -263,6 +267,8 @@ Low: konsistensi visual minor.
 
 Severity mengikuti dampak, tidak otomatis mengikuti kategori aturan. Laporkan batas lingkup. Jika pengguna meminta audit saja, jangan otomatis memperbaiki kode.
 
+Hasil akhir audit wajib berupa file HTML, bukan hanya daftar temuan di chat atau Markdown. Ikuti `audit-report.md` untuk struktur, keamanan, penamaan file, dan cara menyerahkan laporan. Tidak ada temuan bukan berarti semua gate lulus; laporan tetap mencatat bagian yang belum diuji.
+
 
 ## Modul Pola UI
 
@@ -393,6 +399,84 @@ Batas: [integrasi/state yang belum diverifikasi].
 
 Contoh adalah format, bukan hasil yang boleh disalin sebagai bukti. Simpan laporan detail pada file bila panjang; ringkas temuan penting di chat.
 
+#### Output akhir audit: HTML wajib
+
+Untuk audit atau audit ulang, format ringkas di atas hanya ringkasan chat. Deliverable utamanya adalah file laporan `.html`, sesuai [spesifikasi laporan audit](#modul-laporan-audit-html).
+
+Sebelum menyatakan audit selesai, periksa:
+- File HTML benar-benar tersimpan dan tersedia untuk dibuka/diunduh.
+- Ringkasan, scope, gate, temuan/prioritas, bukti, rekomendasi, dan batas pengujian terisi dari pemeriksaan nyata.
+- Placeholder template dihapus atau diganti dengan “Tidak diuji” beserta alasan yang sesuai.
+- Status tidak mengklaim PASS untuk pemeriksaan yang belum dilakukan.
+- HTML tidak memuat secrets, instruksi skrip dari data sumber, atau dependensi remote wajib.
+
+Jika pembuatan file terhalang, laporkan blocker dan hasil parsial; jangan menganggap ringkasan teks telah memenuhi output akhir audit.
+
+
+## Modul Laporan Audit HTML
+
+### Laporan Audit HTML
+
+#### Kontrak output
+
+Setiap audit UI/desain Genrock, termasuk audit ulang setelah perbaikan, wajib menyerahkan file HTML sebagai deliverable akhir. Berlaku juga saat tidak ditemukan masalah atau pemeriksaan hanya statis. Ringkasan chat dan Markdown boleh mendampingi, tidak menggantikan HTML.
+
+Pembuatan skill atau template laporan bukan audit terhadap aplikasi; jangan membuat klaim hasil audit aplikasi dari task tersebut.
+
+#### Lokasi dan penamaan
+
+- Di proyek: `audits/genrock-audit-NNN-YYYY-MM-DD.html`.
+- Di percakapan tanpa proyek: `attached_assets/genrock-audit-NNN-YYYY-MM-DD.html`.
+- Cari laporan existing lebih dahulu, lalu gunakan nomor berikutnya dan tanggal lokal pengguna jika diketahui; jika tidak, gunakan tanggal lingkungan.
+- Jangan menimpa laporan lama. Audit ulang punya nomor baru dan referensi ke laporan sebelumnya bila tersedia.
+
+#### Struktur wajib
+
+1. **Identitas:** nama produk, nomor laporan, waktu/zona waktu, reviewer agent, serta commit/branch bila benar-benar tersedia.
+2. **Ringkasan:** kesimpulan dalam scope, jumlah temuan berdasarkan data laporan, high/medium/low, prioritas terpenting. Hindari skor “kualitas 95%” tanpa metodologi.
+3. **Lingkup dan metode:** layar/alur/file, viewport, theme, command/test, static vs runtime; bedakan lingkup rencana dan yang dijalankan.
+4. **Delivery gate:** PASS/FAIL/NOT TESTED/N/A untuk gate relevan, dengan bukti atau alasan.
+5. **Temuan:** ID stabil, rule Genrock bila relevan, severity berdasarkan dampak, lokasi, kondisi reproduksi, bukti, dampak pengguna, rekomendasi, dan status perbaikan.
+6. **Rencana perbaikan:** urutan prioritas yang realistis; jangan mengklaim perubahan telah dilakukan jika hanya rekomendasi.
+7. **Batas pengujian:** hal yang tidak diuji, blocker, asumsi yang belum diverifikasi, dan risiko tersisa.
+
+Untuk audit ulang, gunakan status perbaikan `OPEN / FIXED / NOT VERIFIED / NOT APPLICABLE`, terpisah dari status gate. FIXED harus diverifikasi; perubahan source saja belum membuktikan masalah selesai.
+
+Jika nol temuan: tuliskan “Tidak ditemukan masalah dalam lingkup yang diperiksa”, bukan “Aplikasi bebas masalah”. Gate yang belum diperiksa tetap NOT TESTED.
+
+#### Presentasi
+
+- Gunakan [template audit](#template-html-audit) sebagai starter. Template merupakan shell kosong; jangan menyalin datanya sebagai hasil.
+- Identitas Industrial: IBM Plex Sans bila tersedia, background solid, border, accent hijau, radius kecil.
+- Self-contained: CSS inline; font lokal/embedded berlisensi bila tersedia, system fallback bila tidak. Jangan bergantung pada Google Fonts/CDN untuk membaca laporan.
+- Screenshot bukti harus di-embed sebagai data URI bila diperlukan untuk portabilitas; redaksi data sensitif sebelum memasukkannya. Alternatif bukti teks/file lines yang jelas boleh.
+- HTML semantic, mobile-readable, print stylesheet. Tabel overflow lokal boleh, halaman jangan overflow. Status dan severity punya label teks, bukan hanya warna.
+- JavaScript tidak diperlukan; bila ada filter opsional, semua isi tetap terbaca tanpa JS. Jangan menambahkan tombol yang tidak berfungsi.
+- Chart hanya jika ada kebutuhan analisis dan data nyata; laporan audit tidak membutuhkan chart dekoratif.
+
+#### Keamanan dan pemeriksaan
+
+- Escape konten sumber yang dimasukkan ke teks/atribut HTML: `& < > " '`. Jangan merender raw HTML dari issue, source code, komentar, atau connector sebagai markup tepercaya.
+- Jangan menyertakan password, token, cookie, connection string, PII yang tidak diperlukan, atau raw console trace yang mengandung secrets.
+- Jangan menambahkan skrip/event handlers dari konten yang sedang diaudit.
+- Validasi struktur HTML, konsistensi jumlah temuan, ID dan tautan internal, tidak ada placeholder tersisa, serta tidak ada status tanpa bukti/alasan.
+- Jika browser tersedia, buka laporan dan periksa mobile serta print layout. Jika hanya validasi statis, nyatakan keterbatasan tersebut.
+
+#### Menyerahkan hasil
+
+Pada Replit conversation, jika callback asset tersedia, gunakan:
+```javascript
+await presentAsset({
+  filePath: "attached_assets/genrock-audit-001-YYYY-MM-DD.html",
+  title: "Genrock — Laporan Audit [produk]",
+  description: "Temuan, prioritas, bukti, rekomendasi, dan batas pengujian."
+});
+```
+
+Path di atas adalah contoh, gunakan path file yang benar-benar dibuat. Pada project/agent lain, gunakan mekanisme artifact/attachment/download yang tersedia dan sebut lokasi file. Jangan menganggap link `file://` atau sekadar blok HTML di chat sebagai file yang sudah diserahkan.
+
+Ringkasan akhir chat: kesimpulan utama, jumlah dan prioritas masalah jika diketahui, batas penting, dan akses ke laporan. Audit dengan FAIL dapat selesai sebagai audit; hasil aplikasi tetap belum tentu siap produksi.
+
 
 ## Template DESIGN
 
@@ -432,6 +516,62 @@ Contoh adalah format, bukan hasil yang boleh disalin sebagai bukti. Simpan lapor
 - Blocker atau pemeriksaan yang belum dilakukan:
 
 Template ini bukan permission untuk mengisi statistik atau fitur rekaan.
+```
+
+
+## Template HTML Audit
+
+```html
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Genrock — Template Laporan Audit</title>
+<style>
+/* Embed licensed IBM Plex Sans if available; otherwise use the explicit fallback.
+   All audit content must be escaped before insertion into this document. */
+*{box-sizing:border-box}body{margin:0;background:#f5f5f0;color:#212622;font-family:"IBM Plex Sans",system-ui,Arial,sans-serif;font-size:16px;line-height:1.6}main{max-width:1060px;margin:auto;padding:40px 28px}h1,h2,h3{line-height:1.25;font-weight:600}h1{font-size:32px;letter-spacing:-.025em;margin:12px 0}h2{font-size:24px;margin:0 0 16px}h3{font-size:20px;margin:0 0 10px}p{margin:0 0 14px}.eyebrow{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#626a63}.muted{color:#626a63}.template{background:#fff;border:1px solid #d3d8d0;border-left:4px solid #2c503c;padding:16px;margin:24px 0}.meta{display:grid;grid-template-columns:140px minmax(0,1fr);gap:8px 20px;padding:18px 0;border-top:1px solid #d3d8d0;border-bottom:1px solid #d3d8d0}.meta dt{color:#626a63}.meta dd{margin:0;overflow-wrap:anywhere}nav{display:flex;flex-wrap:wrap;gap:12px 24px;margin:24px 0}a{color:#2c503c;text-underline-offset:3px}a:focus-visible{outline:3px solid #164a70;outline-offset:3px}section{margin:32px 0}.summary{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #d3d8d0;background:#fff;border-radius:4px}.summary div{padding:16px}.summary div+div{border-left:1px solid #d3d8d0}.summary strong{display:block;font-size:20px;font-variant-numeric:tabular-nums}.table-wrap{overflow:auto;border:1px solid #d3d8d0;border-radius:4px}table{width:100%;border-collapse:collapse;background:#fff;text-align:left}th,td{padding:12px 16px;border-bottom:1px solid #d3d8d0;vertical-align:top}th{font-weight:600;background:#eaf0e7}caption{text-align:left;padding:12px 16px;color:#626a63}tbody tr:last-child td{border-bottom:0}.status{font-size:14px;font-weight:600;white-space:nowrap}.finding{padding:20px;border:1px solid #d3d8d0;border-left:4px solid #2c503c;background:#fff;border-radius:4px;margin:16px 0}.finding dl{display:grid;grid-template-columns:125px minmax(0,1fr);gap:8px 18px}.finding dt{font-weight:500}.finding dd{margin:0;overflow-wrap:anywhere}code{font-family:ui-monospace,Consolas,monospace;font-size:.875em;overflow-wrap:anywhere}footer{margin-top:36px;padding-top:18px;border-top:1px solid #d3d8d0;font-size:14px;color:#626a63}@media(max-width:600px){main{padding:24px 16px}h1{font-size:28px}.meta,.finding dl{grid-template-columns:1fr;gap:4px}.meta dd,.finding dd{margin-bottom:12px}.summary{grid-template-columns:1fr}.summary div+div{border-left:0;border-top:1px solid #d3d8d0}th,td{padding:10px 12px;font-size:14px}}@media print{body{background:#fff;color:#000}main{max-width:none;padding:0}nav{display:none}.table-wrap{overflow:visible}.finding{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit}footer{font-size:11pt}}
+</style>
+</head>
+<body><main>
+<header>
+<div class="eyebrow">Genrock / Design Integrity</div>
+<h1>Template laporan audit</h1>
+<p class="muted">Shell laporan, bukan hasil pemeriksaan terhadap aplikasi.</p>
+</header>
+<aside class="template"><strong>TEMPLATE — BELUM DIISI.</strong><br>Ganti seluruh isian dengan hasil pemeriksaan nyata. Hapus pemberitahuan ini setelah laporan terisi. Jangan menjadikan contoh struktur sebagai bukti PASS.</aside>
+<dl class="meta">
+<dt>Produk</dt><dd>Belum diisi</dd>
+<dt>Nomor dan waktu</dt><dd>Belum diisi; sertakan zona waktu</dd>
+<dt>Reviewer</dt><dd>Belum diisi</dd>
+<dt>Branch / commit</dt><dd>Belum diperiksa</dd>
+<dt>Jenis pemeriksaan</dt><dd>Belum diisi: statis, runtime, atau keduanya</dd>
+</dl>
+<nav aria-label="Bagian laporan"><a href="#summary">Ringkasan</a><a href="#scope">Lingkup</a><a href="#gates">Delivery gate</a><a href="#findings">Temuan</a><a href="#plan">Prioritas</a><a href="#limits">Batas pengujian</a></nav>
+<section id="summary"><h2>Ringkasan</h2><p>Belum diisi: kesimpulan hanya berdasarkan scope yang benar-benar diperiksa.</p>
+<div class="summary"><div><span>High</span><strong>Belum dihitung</strong></div><div><span>Medium</span><strong>Belum dihitung</strong></div><div><span>Low</span><strong>Belum dihitung</strong></div></div>
+</section>
+<section id="scope"><h2>Lingkup dan metode</h2><p>Belum diisi: layar, alur, file, perangkat/viewport, theme, command, dan pemeriksaan yang benar-benar dijalankan.</p></section>
+<section id="gates"><h2>Delivery gate</h2>
+<div class="table-wrap"><table><caption>Status pemeriksaan; bukan daftar klaim kelulusan.</caption><thead><tr><th scope="col">Gate</th><th scope="col">Status</th><th scope="col">Bukti / alasan</th></tr></thead>
+<tbody><tr><th scope="row">Direction &amp; identity</th><td class="status">NOT TESTED</td><td>Template belum diisi.</td></tr>
+<tr><th scope="row">Build &amp; runtime</th><td class="status">NOT TESTED</td><td>Template belum diisi.</td></tr>
+<tr><th scope="row">Task flow &amp; states</th><td class="status">NOT TESTED</td><td>Template belum diisi.</td></tr>
+<tr><th scope="row">Content honesty</th><td class="status">NOT TESTED</td><td>Template belum diisi.</td></tr>
+<tr><th scope="row">Responsive, type &amp; zoom</th><td class="status">NOT TESTED</td><td>Template belum diisi.</td></tr>
+<tr><th scope="row">Keyboard &amp; semantics</th><td class="status">NOT TESTED</td><td>Template belum diisi.</td></tr>
+<tr><th scope="row">Contrast</th><td class="status">NOT TESTED</td><td>Template belum diisi.</td></tr>
+<tr><th scope="row">Theme &amp; motion</th><td class="status">NOT TESTED</td><td>Template belum diisi.</td></tr></tbody></table></div>
+</section>
+<section id="findings"><h2>Temuan</h2><p>Blok di bawah adalah struktur contoh, bukan masalah yang telah ditemukan. Ganti dengan temuan nyata atau pernyataan nol temuan dalam lingkup yang diperiksa.</p>
+<article class="finding"><h3>Temuan — belum diisi</h3>
+<dl><dt>ID / aturan</dt><dd>Belum diisi</dd><dt>Severity</dt><dd>Belum ditentukan berdasarkan dampak</dd><dt>Status perbaikan</dt><dd>NOT VERIFIED — template belum diisi</dd><dt>Lokasi</dt><dd>Belum diisi: route, komponen, file/baris</dd><dt>Reproduksi</dt><dd>Belum diisi: langkah dan kondisi pengujian</dd><dt>Bukti</dt><dd>Belum diisi; gunakan hasil nyata, jangan menyertakan secrets</dd><dt>Dampak</dt><dd>Belum diisi: akibat bagi pengguna</dd><dt>Rekomendasi</dt><dd>Belum diisi: tindakan perbaikan yang konkret</dd></dl>
+</article></section>
+<section id="plan"><h2>Urutan perbaikan</h2><p>Belum diisi. Prioritaskan risiko dan hambatan alur utama; bedakan rekomendasi dengan perubahan yang telah dilakukan.</p></section>
+<section id="limits"><h2>Batas pengujian dan risiko tersisa</h2><p>Belum diisi: pemeriksaan yang belum dilakukan, blocker, asumsi, dan batas klaim kesiapan produksi.</p></section>
+<footer>Genrock Industrial / Design Integrity. Template ini tidak menyatakan aplikasi lulus audit atau memenuhi WCAG.</footer>
+</main></body></html>
 ```
 
 

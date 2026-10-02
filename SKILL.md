@@ -36,6 +36,8 @@ Baca sebelum pekerjaan:
 Baca sesuai kebutuhan:
 - [Pola UI](reference/ui-patterns.md): layout, form, tabel, navigasi, states, native.
 - [Delivery gate](reference/delivery-gate.md): sebelum menyatakan pekerjaan selesai.
+- [Laporan audit HTML](reference/audit-report.md): wajib untuk audit dan audit ulang.
+- [Template HTML audit](templates/audit-report.html): starter laporan, bukan hasil audit.
 - [Template arah produk](templates/DESIGN.md): untuk mencatat identitas dan keputusan per proyek.
 - [Token CSS](assets/genrock-tokens.css): starter web, bukan stylesheet yang harus disalin mentah.
 
@@ -44,7 +46,7 @@ Baca sesuai kebutuhan:
 Pilih dari permintaan, tidak perlu menanyakan mode pada setiap sesi:
 - **Build:** app/UI baru. Tetapkan arah, implementasikan, lalu verifikasi.
 - **Adapt:** perubahan pada UI existing. Pertahankan struktur dan integrasi, ubah hanya yang diperlukan.
-- **Audit:** permintaan review atau audit. Baca dan laporkan temuan; jangan mengubah kode kecuali pengguna meminta perbaikan.
+- **Audit:** permintaan review atau audit. Baca dan laporkan temuan dalam file HTML sebagai output akhir; jangan mengubah kode kecuali pengguna meminta perbaikan. Ringkasan chat tidak menggantikan file.
 - **Explore:** pilihan visual. Buat mockup yang jelas dilabeli konsep, dengan data contoh yang transparan. Jangan mengklaim sebagai aplikasi berfungsi.
 
 Jika niat benar-benar ambigu, ajukan satu pertanyaan terarah dengan rekomendasi.
@@ -102,3 +104,5 @@ Sebuah hasil baik harus:
 **Batas:** integrasi, data, atau workflow yang belum siap.
 
 Simpan detail audit panjang di file bila diperlukan; jangan membanjiri chat dengan puluhan PASS identik.
+
+Untuk mode Audit, wajib buat dan lampirkan file `.html` sesuai modul laporan audit, termasuk ketika tidak ada temuan. Audit ulang setelah perbaikan menghasilkan laporan HTML baru dengan status temuan yang diperbarui. Jangan mengaku selesai sebelum file benar-benar dibuat dan dapat diakses pengguna.

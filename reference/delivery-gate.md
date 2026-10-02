@@ -48,3 +48,16 @@ Batas: [integrasi/state yang belum diverifikasi].
 ```
 
 Contoh adalah format, bukan hasil yang boleh disalin sebagai bukti. Simpan laporan detail pada file bila panjang; ringkas temuan penting di chat.
+
+## Output akhir audit: HTML wajib
+
+Untuk audit atau audit ulang, format ringkas di atas hanya ringkasan chat. Deliverable utamanya adalah file laporan `.html`, sesuai [spesifikasi laporan audit](audit-report.md).
+
+Sebelum menyatakan audit selesai, periksa:
+- File HTML benar-benar tersimpan dan tersedia untuk dibuka/diunduh.
+- Ringkasan, scope, gate, temuan/prioritas, bukti, rekomendasi, dan batas pengujian terisi dari pemeriksaan nyata.
+- Placeholder template dihapus atau diganti dengan “Tidak diuji” beserta alasan yang sesuai.
+- Status tidak mengklaim PASS untuk pemeriksaan yang belum dilakukan.
+- HTML tidak memuat secrets, instruksi skrip dari data sumber, atau dependensi remote wajib.
+
+Jika pembuatan file terhalang, laporkan blocker dan hasil parsial; jangan menganggap ringkasan teks telah memenuhi output akhir audit.

@@ -9,6 +9,8 @@ Reusable UI design skill with a consistent **Genrock Industrial** identity: IBM 
 - [Design Integrity](reference/design-integrity.md): honesty, functionality, purposeful visual techniques, and consistency.
 - [UI patterns](reference/ui-patterns.md): forms, tables, navigation, interaction states, and accessibility.
 - [Delivery gate](reference/delivery-gate.md): evidence-based PASS / FAIL / NOT TESTED / N/A checks.
+- [HTML audit report specification](reference/audit-report.md): mandatory final output for every audit and follow-up audit.
+- [HTML audit template](templates/audit-report.html): responsive, self-contained starter with print styles; not actual audit results.
 - [DESIGN.md template](templates/DESIGN.md): product-specific design direction.
 - [CSS tokens](assets/genrock-tokens.css): web starter, not a complete component library.
 - [Single-file skill](genrock-aiblock.md): all modules and tokens in one document.
@@ -29,6 +31,12 @@ Example request:
 Audit without editing:
 
 > Audit UI ini dengan genrock-aiblock. Laporkan masalah dan rekomendasi tanpa mengubah kode.
+
+## Mandatory audit deliverable
+
+Every audit and follow-up audit must produce a downloadable/openable HTML report, not only a chat summary or Markdown findings. Reports include scope, methods, gate status, prioritized findings, evidence, recommendations, and untested areas.
+
+Use audits/genrock-audit-NNN-YYYY-MM-DD.html in a project, or attached_assets/genrock-audit-NNN-YYYY-MM-DD.html in a standalone conversation. Increment the number and do not overwrite previous reports. Templates must be populated from real checks; untested gates remain NOT TESTED.
 
 ## Principles
 

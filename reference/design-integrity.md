@@ -63,3 +63,5 @@ Medium: hierarchy, responsive, state atau affordance bermasalah.
 Low: konsistensi visual minor.
 
 Severity mengikuti dampak, tidak otomatis mengikuti kategori aturan. Laporkan batas lingkup. Jika pengguna meminta audit saja, jangan otomatis memperbaiki kode.
+
+Hasil akhir audit wajib berupa file HTML, bukan hanya daftar temuan di chat atau Markdown. Ikuti `audit-report.md` untuk struktur, keamanan, penamaan file, dan cara menyerahkan laporan. Tidak ada temuan bukan berarti semua gate lulus; laporan tetap mencatat bagian yang belum diuji.
