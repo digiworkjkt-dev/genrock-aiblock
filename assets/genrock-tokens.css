@@ -1,0 +1,102 @@
+/* Genrock Industrial — starter web tokens.
+   Font assets must be loaded separately from a licensed official distribution.
+   Semantic mapping, not a full component stylesheet or accessibility guarantee. */
+:root {
+  --gr-font-ui: "IBM Plex Sans", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --gr-font-code: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --gr-canvas: #f5f5f0;
+  --gr-surface: #ffffff;
+  --gr-ink: #212622;
+  --gr-muted: #626a63;
+  --gr-border: #d3d8d0;
+  --gr-control-border: #7a857b;
+  --gr-accent: #2c503c;
+  --gr-accent-hover: #23402f;
+  --gr-on-accent: #ffffff;
+  --gr-accent-subtle: #eaf0e7;
+  --gr-danger: #a12b2b;
+  --gr-warning: #775000;
+  --gr-focus: #164a70;
+  --gr-radius-control: 4px;
+  --gr-radius-panel: 4px;
+  --gr-radius-dialog: 8px;
+  --gr-space-1: 0.25rem;
+  --gr-space-2: 0.5rem;
+  --gr-space-3: 0.75rem;
+  --gr-space-4: 1rem;
+  --gr-space-6: 1.5rem;
+  --gr-space-8: 2rem;
+  --gr-space-12: 3rem;
+  --gr-space-16: 4rem;
+  --gr-text-meta: 0.75rem;
+  --gr-text-compact: 0.875rem;
+  --gr-text-body: 1rem;
+  --gr-text-subhead: 1.25rem;
+  --gr-text-section: 1.5rem;
+  --gr-text-title: 2rem;
+  --gr-weight-regular: 400;
+  --gr-weight-medium: 500;
+  --gr-weight-semibold: 600;
+  --gr-leading-body: 1.6;
+  --gr-leading-title: 1.25;
+  --gr-shadow-overlay: 0 8px 24px rgb(21 32 24 / 12%);
+  --gr-duration-fast: 140ms;
+  --gr-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Optional dark starter. Implement all component states before shipping it. */
+[data-gr-theme="dark"] {
+  color-scheme: dark;
+  --gr-canvas: #171d19;
+  --gr-surface: #202922;
+  --gr-ink: #f0f3ed;
+  --gr-muted: #b4c0b3;
+  --gr-border: #455247;
+  --gr-control-border: #839280;
+  --gr-accent: #b9d6b4;
+  --gr-accent-hover: #cbe4c7;
+  --gr-on-accent: #172b1a;
+  --gr-accent-subtle: #293c2c;
+  --gr-danger: #ffb4ab;
+  --gr-warning: #f0cd85;
+  --gr-focus: #b9d6b4;
+}
+
+.gr-root {
+  font-family: var(--gr-font-ui);
+  font-size: var(--gr-text-body);
+  line-height: var(--gr-leading-body);
+  color: var(--gr-ink);
+  background: var(--gr-canvas);
+}
+
+.gr-root :where(button, input, select, textarea) { font: inherit; }
+.gr-root :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--gr-focus);
+  outline-offset: 3px;
+}
+.gr-number { font-variant-numeric: tabular-nums; }
+.gr-prose { max-inline-size: 65ch; overflow-wrap: break-word; }
+.gr-title {
+  font-size: var(--gr-text-title);
+  font-weight: var(--gr-weight-semibold);
+  line-height: var(--gr-leading-title);
+  letter-spacing: -0.025em;
+}
+.gr-primary {
+  min-block-size: 2.75rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--gr-radius-control);
+  color: var(--gr-on-accent);
+  background: var(--gr-accent);
+  font-weight: var(--gr-weight-medium);
+}
+.gr-primary:hover:not(:disabled) { background: var(--gr-accent-hover); }
+.gr-primary:disabled { cursor: not-allowed; }
+/* Implement pending/pressed/disabled visuals in the component system.
+   Apply motion only to components with an actual transition. */
+@media (prefers-reduced-motion: reduce) {
+  .gr-root { --gr-duration-fast: 0ms; }
+}
